@@ -1,71 +1,69 @@
-import { useState } from 'react';
+
+import { useState } from "react";
 
 export function AddBlog() {
+    const [username, setUsername] = useState('');
     const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [Content, setContent] = useState('');
+    const [isAuthorized, setIsAuthorized] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newBlog = {
-            username: title,
-            blogContent: content,
-            ContentType: 'Blog'
-        };
+            username: username,
+            Title: title,
+            blogContent: Content,
+            ContentAuth: isAuthorized,
+        }
 
         try {
             const response = await fetch('http://localhost:8000/api/blog/blogs', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newBlog)
-            });
-
+            })
             if (response.ok) {
                 const result = await response.json();
-                console.log('Blog created successfully:', result);
-                alert('Blog added successfully!');
-                setTitle('');
-                setContent('');
-            } else {
-                console.error('Failed to create blog');
-                alert('Failed to add blog');
-            }
-        } catch (error) {
-            console.error('Connection error:', error);
-            alert('Something went wrong. Is your backend running?');
-        }
-    };
+                console.log(`blog created successfully`, result)
+                alert(`Blog Added`);
 
+                setUsername('');
+                setContent('');
+                setTitle('');
+                setIsAuthorized(false);
+            }
+        }
+        catch (err) {
+            console.log(`error occured`, err)
+            alert(`error connecting to backend`)
+        }
+
+    }
     return (
-        <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
-            <h2>Create a New Blog Entry</h2>
-            <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Title (Username):</label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        style={{ width: '100%', padding: '8px' }}
-                        required
-                    />
-                </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Content:</label>
-                    <textarea
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        style={{ width: '100%', padding: '8px', minHeight: '100px' }}
-                        required
-                    ></textarea>
-                </div>
-                <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>
-                    Publish Blog
-                </button>
-            </form>
-        </div>
-    );
+        <>
+            <div>
+                <h1 className="">Create new Blog</h1>
+                <form onSubmit={handleSubmit}>
+                    <label>Username: </label>
+                    <input type="text" value={username} onChange={(e) => { setUsername(e.target.value) }} required /><br></br>
+                    
+                    <label>Title: </label>
+                    <input type="text" value={title} onChange={(e) => { setTitle(e.target.value )}} required /><br></br>
+                    
+                    <label>Blog Content: </label>
+                    <input type="text" value={Content} onChange={(e) => { setContent(e.target.value) }} required /><br></br>
+                    
+                    <label>Privacy: </label>
+                    <input type="checkbox" checked={isAuthorized} onChange={(e) => { setIsAuthorized(e.target.checked )}} id="isAuthorized" />Public<br></br>
+                    
+                    <button type="submit">Publish</button>
+
+                </form>
+            </div>
+        </>
+    )
 }
+
+
 
