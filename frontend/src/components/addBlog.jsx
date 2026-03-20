@@ -21,7 +21,8 @@ export function AddBlog() {
             const response = await fetch('http://localhost:8000/api/blog/blogs', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newBlog)
+                body: JSON.stringify(newBlog),
+                credentials: 'include'
             })
             if (response.ok) {
                 const result = await response.json();

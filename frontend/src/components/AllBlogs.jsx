@@ -7,7 +7,9 @@ export function AllBlogs() {
     useEffect(() => {
         async function fetchMyData() {
             try{
-                const response  = await fetch("http://localhost:8000/api/blog/AllBlogs");
+                const response  = await fetch("http://localhost:8000/api/blog/AllBlogs", {
+                    credentials: 'include'
+                });
             const data = await response.json();
             setBlogs(data);
             

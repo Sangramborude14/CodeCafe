@@ -1,19 +1,22 @@
+import { Link } from 'react-router-dom';
 
 export function Home(){
     function HomeButtons () {
         return (<>
-        <a href="/blogs/create"><button>Create New Blog</button></a>
-        <a href="/blogs/view_personal"><button>View My Blog</button></a>
-        <a href="blogs/view_public"><button>View All Blogs</button></a> 
+       <div id='div1'>
+         <Link to="/CreateBlogs"><button className='home-button'>Create New Blog</button>
+        </Link><button className='home-button'>View My Blog</button>
+        <Link to="/AllBlogs"><button className='home-button'>View All Blogs</button></Link> 
+       </div>
         </>)
     }
     let isLoggedIn = true;
     return (
         <>
         <header>
-            <h1>Welcome to CodeCafe</h1>
+            <h1 className='heading'>Welcome to CodeCafe</h1>
         </header>
-    <p><i>"a tea spilled is a cup filled"</i></p>
+    <p className='home-p'><i>"a tea spilled is a cup filled"</i></p>
 
     <div>
         {isLoggedIn && <HomeButtons/>}       

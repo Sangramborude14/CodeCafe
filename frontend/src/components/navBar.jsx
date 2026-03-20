@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-export function  NavBar() {
+export function NavBar() {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
-    let isLoggedIn = true;
+    const { isLoggedIn } = useAuth();
 
     const navStyle = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '1rem 2rem',
+        padding: '1rem 2rem 1rem 1rem',
         background: '#333',
-        color: '#fff'
+        color: '#fff',
+        fontSize: '1.5rem',
     }
 
     const linkStyle = {
@@ -19,6 +22,7 @@ export function  NavBar() {
         textDecoration: 'none',
         marginRight: '20px',
         cursor: 'pointer'
+        
     }
 
     const menuStyle = {
@@ -30,14 +34,29 @@ export function  NavBar() {
 
     return (
         <nav style={navStyle}>
-            <div style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>CodeCafe</div>
+            <div style={{ fontWeight: 'bold', }}>CodeCafe</div>
             <ul style={menuStyle}>
-                <li><Link to="/home" style={linkStyle}>Home</Link></li>
-                <li><Link to="/AllBlogs" style={linkStyle}>AllBlogs</Link></li>
-                <li><Link to="/CreateBlogs" style={linkStyle}>Create Blog</Link></li>
-                <li><Link to="/Settings" style={linkStyle}>Settings</Link></li>
+                {(isLoggedIn) ? (<>
+                    <li><Link to="/AllBlogs" style={linkStyle}>AllBlogs</Link></li>
+                    <li><Link to="/CreateBlogs" style={linkStyle}>Create Blog</Link></li>
+                    <li><Link to="/Settings" style={linkStyle}>Settings</Link></li>
+                    <li><Link to="/logout" style={linkStyle}>logout</Link></li>
+                </>) :
+
+                    (<>
+                        <li><Link to="/signup" style={linkStyle}>signup</Link></li>
+                        <li><Link to="/login" style={linkStyle}>Login</Link></li>
+                    </>)}
             </ul>
 
         </nav>
     );
 }
+
+
+//     <li><Link to="/home" style={linkStyle}>Home</Link></li>
+// <li><Link to="/AllBlogs" style={linkStyle}>AllBlogs</Link></li>
+// <li><Link to="/CreateBlogs" style={linkStyle}>Create Blog</Link></li>
+// <li><Link to="/Settings" style={linkStyle}>Settings</Link></li>
+// <li><Link to="/signup" style={linkStyle}>signup</Link></li>
+// <li><Link to="/login" style={linkStyle}>Login</Link></li>

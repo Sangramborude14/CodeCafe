@@ -15,11 +15,15 @@ const errorController = require('./controller/error.js');
 const blogRouter = require("./routes/blogRouter");
 const Users = require("./models/auth.js")
 const Blogs = require("./models/blog.js")
+const authRouter = require("./routes/authRouter")
 
 //parsing
 server.use(express.urlencoded({extended: true}));
 server.use(express.json()); // Add JSON parser
-server.use(cors()); // Enable CORS for all routes
+server.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+})); // Enable CORS with credentials for Vite dev server
 
 
 //mongoDB session
@@ -44,6 +48,7 @@ server.use((req, res, next) => {
 server.use(express.static(path.join(rootDir, 'public')));
 // server.use(user);
 server.use("/api/blog",blogRouter); // Fixed: Added leading slash
+server.use("/api/auth",authRouter);
 
 
 

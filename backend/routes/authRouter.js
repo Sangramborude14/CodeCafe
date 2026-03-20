@@ -12,4 +12,11 @@ authRouter.post("/signup",authController.signupPost);
 authRouter.get("/login",authController.loginGet);
 authRouter.post("/login",authController.loginPost);
 
+//logout
+authRouter.post("/logout",authController.Logout)
+
+//isLoggedIn
+authRouter.get("/status",authController.getStatus)
+module.exports = authRouter
+
 
