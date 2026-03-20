@@ -1,3 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 .center {
   text-align: center;
 }
@@ -181,3 +189,125 @@ background: rgba(255, 255, 255, 0.1);
   transform: scale(1.02);
 }
 
+.allblog-div{
+  border: 1px solid rgba(255, 0, 0, 0.6);
+  margin: 2rem;
+  padding:0.1rem 0rem  0.7rem 0.1rem;
+
+  background: rgba(250, 246, 246, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2px dashed #6366f1;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+.allblog-div:hover{
+  border-style: solid;
+  border-color: #4338ca;
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+#all-h3{
+  background-color: aliceblue;
+  font-size: xx-large;
+  margin: 0px;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+#all-p{
+background: rgba(255, 255, 255, 0.2); 
+  
+/* glassmorphism */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+  font-weight: 100;
+  font-family: 'Arial';
+  padding: 0.4rem;
+  line-height: 2;
+  word-spacing: 5px;
+  font-size: large;
+  margin: 1rem 1rem 0.3rem 1rem;
+}
+#all-small{
+  padding:0.5rem;
+  margin:none;
+  margin-left: 1rem;
+  font-family: 'VT323', monospace;
+  font-size: 2rem;
+  color: #da0c0c;
+  text-shadow: 2px 2px #ffffff; /* Subtle "inset" text effect */
+  text-transform: uppercase;
+}
+
+#all-div{
+  display: flex;
+  flex-direction: column;
+}
+
+.add-input{
+  background-color: #eee;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  width: 13em;
+  border-radius: 1rem;
+  color: lightcoral;
+  box-shadow: 0 0.4rem #dfd9d9;
+  cursor: pointer;
+  margin: 1rem 1rem 1rem 1rem;
+}
+#add-div{
+  display: grid;
+  grid-template-columns: 120px 1fr; /* Fixed width for labels, rest for inputs */
+  width: 90%; /* Adjust percentage as needed */
+  max-width: 800px; /* Limits how wide it gets on desktop */
+  margin: 0 auto; 
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1); /* Optional glass effect */
+  border-radius: 12px;
+  vertical-align: top;
+  text-align: left;
+  
+}
+.add-label{
+  display: flex;
+  align-items: center; /* Vertically centers label text with input */
+  font-weight: bold;
+  font-size: x-large;
+}
+#blog-content {
+  /* 1. Increase width (using 100% or a larger rem value) */
+  width: 90rem; 
+  max-width: 600px; /* Adjust this to your preferred maximum width */
+  
+  /* 2. Fix text alignment */
+  display: block;
+  padding: 1rem; /* Added internal spacing for better readability */
+  box-sizing: border-box; /* Prevents padding from breaking the width */
+  
+  /* Your existing styles */
+  height: 30rem;
+  background: rgba(250, 246, 246, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2px dashed #6366f1;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  /* Textarea specific fixes */
+  resize: vertical; /* Allows user to pull the corner to make it longer */
+  outline: none;
+}
+.add-h1{
+  grid-column: 1 / -1; /* This forces the heading to take up the full width */
+  text-align: center;  /* Centers the text */
+  margin-bottom: 20px; /* Gives the form some breathing room */
+  width: 100%;
+  font-size: xx-large;
+}

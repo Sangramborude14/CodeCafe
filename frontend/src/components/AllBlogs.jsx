@@ -26,14 +26,14 @@ export function AllBlogs() {
             return <h2>The Blogs are Loading</h2>
         }
     return (<>
-            <div>
-                <h2>All Blogs</h2>
+            <div id="all-div">
+                <h2 id="All-h2">All Blogs</h2>
                 {blogs.map((blog) => (
-                <div key={blog._id}>
-                    <h3>{blog.Title}</h3>
-                    <p>{blog.blogContent}</p>
+                <div className="allblog-div" key={blog._id}>
+                    <h3 id="all-h3">{blog.Title}</h3>
+                    <p id="all-p">{blog.blogContent}</p>
                     <br/>
-                    <small>By: <b>{blog.username}</b></small>
+                    <small id="all-small">By: <b>{blog.username}</b></small>
                 </div>
             ))}
             </div>
