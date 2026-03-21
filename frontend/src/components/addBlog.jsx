@@ -1,11 +1,32 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
+
 
 export function AddBlog() {
-    const [username, setUsername] = useState('');
     const [title, setTitle] = useState('');
     const [Content, setContent] = useState('');
     const [isAuthorized, setIsAuthorized] = useState(false);
+    const [username,setUsername] = useState('');
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+            const fetchUser = async () => {
+                try{
+                    const res = await fetch('http://localhost:8000/api/blog/blogs',{method: "GET",credentials: 'include'})
+                    if(res.ok){
+                        const data = await res.json();
+                        setUsername(data.username);
+                    }
+                }
+                catch(err){
+                    console.log(`error fetching username`);
+                    
+                }
+            }
+            fetchUser();
+        },[])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,7 +37,8 @@ export function AddBlog() {
             blogContent: Content,
             ContentAuth: isAuthorized,
         }
-
+        
+       
         try {
             const response = await fetch('http://localhost:8000/api/blog/blogs', {
                 method: 'POST',
@@ -28,8 +50,9 @@ export function AddBlog() {
                 const result = await response.json();
                 console.log(`blog created successfully`, result)
                 alert(`Blog Added`);
+                navigate("/AllBlogs"); // Correct way to navigate after success
 
-                setUsername('');
+                // setUsername('');
                 setContent('');
                 setTitle('');
                 setIsAuthorized(false);
@@ -47,23 +70,22 @@ export function AddBlog() {
                 <h1 className="add-h1">Create new Blog</h1>
                 <form onSubmit={handleSubmit}>
                     <label className="add-label">Username: </label>
-                    <input className="add-input" type="text" value={username} onChange={(e) => { setUsername(e.target.value) }} required /><br></br>
+                    <input className="add-input" type="text" value={username} readOnly required />
                     
                     <label className="add-label">Title: </label>
-                    <input className="add-input" type="text" value={title} onChange={(e) => { setTitle(e.target.value )}} required /><br></br>
+                    <input className="add-input" type="text" value={title} onChange={(e) => { setTitle(e.target.value )}} required />
                     
                     <label className="add-label">Blog Content: </label>
-                    <textarea id="blog-content" value={Content} onChange={(e) => { setContent(e.target.value) }} required></textarea><br></br>
+                    <textarea id="blog-content" value={Content} onChange={(e) => { setContent(e.target.value) }} required></textarea>
                     
                     <label className="add-label">Privacy: </label>
-                    <div className="flex items-center gap-3">
-                        <div>
-                    <input className="add-input" type="checkbox" checked={isAuthorized} onChange={(e) => { setIsAuthorized(e.target.checked )}} id="isAuthorized" />Public<br></br>
-                    <div></div>
-                        </div>
-                    </div>
+                    <label className="glass-checkbox">
+                        <input type="checkbox" checked={isAuthorized} onChange={(e) => { setIsAuthorized(e.target.checked )}} id="isAuthorized" />
+                        <span className="checkmark"></span>
+                        <span className="label-text">Private</span>
+                    </label>
                     
-                    <button type="submit"id="publish-btn" className="text-fg-brand bg-neutral-primary border border-brand hover:bg-brand hover:text-white focus:ring-4 focus:ring-brand-subtle font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Publish</button>
+                    <button type="submit" id="publish-btn" className="form-submit-btn">Publish</button>
 
                 </form>
             </div>

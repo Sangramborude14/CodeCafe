@@ -15,16 +15,39 @@ exports.createBlogPost = async (req, res, next) => {
 }
 
 exports.createBlogGet = (req, res, next) => {
-    res.status(200).json({ message: "Ready to create blog" });
+    if (req.session.user && req.session.user.username) {
+        res.status(200).json({ username: req.session.user.username, message: "Ready to create blog" });
+    } else {
+        res.status(401).json({ message: "Unauthorized: User not logged in" });
+    }
 }
 
-exports.AllBlogsGet = async (req,res,next) => {
+exports.AllBlogsGet = async (req, res, next) => {
     try {
         const blogs = await BlogNew.find();
         res.status(200).json(blogs);
-    }catch(err){
+    } catch (err) {
         res.status(500).json({
             message: "failed to fetch blogs"
         })
     }
+}
+
+exports.editBlogGet = async (req, res, next) => {
+    try {
+        const blog = await BlogNew.find();
+        res.status(200).json(blog);
+    } catch (err) {
+        res.status(500).json({
+            message: "failed to fetch blogs"
+        })
+    }
+}
+
+exports.MyBlogGet = async (req, res, next) => {
+
+}
+
+exports.MyBlogPost = async (req, res, next) => {
+
 }

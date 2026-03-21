@@ -2,6 +2,9 @@
   "name": "to-do-backend",
   "version": "1.0.0",
   "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "connect-mongodb-session": "^5.0.0",
