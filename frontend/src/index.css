@@ -396,3 +396,88 @@ input[type="checkbox"]::before {
 input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
+
+/* My Blogs Styling */
+
+.myblog-div1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 1000px;
+  margin: 5% auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.myblog-div1 > h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #000;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.myblog-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0;
+  list-style: none; /* Removes bullet points from the <li> */
+}
+
+.myblog-li {
+  background: rgba(250, 246, 246, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.myblog-li:hover {
+  border-style: solid;
+  border-color: #da0c0c;
+  background-color: rgba(255, 0, 0, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.myblog-li h1 {
+  background-color: aliceblue;
+  font-size: xx-large;
+  margin: 0px 0px 15px 0px;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.myblog-li button {
+  padding: 8px 25px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(213, 27, 10, 0.8);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-right: 15px;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.myblog-li button:hover {
+  background: rgba(213, 27, 10, 1);
+  transform: scale(1.05);
+}

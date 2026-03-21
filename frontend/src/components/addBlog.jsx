@@ -63,7 +63,7 @@ export function AddBlog() {
             alert(`error connecting to backend`)
         }
 
-    }
+    }   
     return (
         <>
             <div id="add-div">

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function Home(){
+    const navigate = useNavigate()
     function HomeButtons () {
         return (<>
        <div id='div1'>
@@ -14,7 +16,7 @@ export function Home(){
     return (
         <>
         <header>
-            <h1 className='heading'>Welcome to CodeCafe</h1>
+            <h1 className='heading'onClick={() => navigate("/")}>Welcome to CodeCafe</h1>
         </header>
     <p className='home-p'><i>"a tea spilled is a cup filled"</i></p>
 

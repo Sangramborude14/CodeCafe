@@ -39,8 +39,9 @@ export function NavBar() {
                 {(isLoggedIn) ? (<>
                     <li><Link to="/AllBlogs" style={linkStyle}>AllBlogs</Link></li>
                     <li><Link to="/CreateBlogs" style={linkStyle}>Create Blog</Link></li>
-                    <li><Link to="/Settings" style={linkStyle}>Settings</Link></li>
                     <li><Link to="/MyBlog" style={linkStyle}>My Blog</Link></li>
+                    <li><Link to="/Settings" style={linkStyle}>Settings</Link></li>
+                    
                     <li><Link to="/logout" style={linkStyle}>logout</Link></li>
                 </>) :
 
